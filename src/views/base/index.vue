@@ -4,6 +4,7 @@
     <p>{{count}} * 2 = {{ doubleCount }}</p>
     <button @click="lessEvt">-</button>
     <button @click="addEvt">+</button>
+    <h1>{{ arr }}</h1>
   </div>
 </template>
 
@@ -11,10 +12,12 @@
 import { ref, watch, computed, getCurrentInstance } from "vue"
 
 export default {
-  setup() {
+  setup(props, context) {
+    console.log('props:', props)
     // 当前上下文
     const { ctx } = getCurrentInstance()
-    console.log('this:', ctx)
+    console.log('ctx this:', ctx)
+    console.log('context:', context)
     // 获取路由
     console.log('route:', ctx.$router.currentRoute.value)
 
