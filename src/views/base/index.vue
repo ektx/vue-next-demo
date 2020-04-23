@@ -1,48 +1,22 @@
 <template>
   <div class="test">
-    <h1>count: {{count}}</h1>
-    <p>{{count}} * 2 = {{ doubleCount }}</p>
-    <button @click="lessEvt">-</button>
-    <button @click="addEvt">+</button>
+    
     <h1>{{ arr }}</h1>
+
+    <HelloModule />
   </div>
 </template>
 
 <script>
-import { ref, watch, computed, getCurrentInstance } from "vue"
+import { getCurrentInstance } from "vue"
+import HelloModule from "@/modules/HelloModule"
 
-function countDemo () {
-  // 定义一个值
-  const count = ref(0)
-  // 添加方法
-  const addEvt = () => {
-    count.value++
-  }
-  // 减少方法
-  const lessEvt = () => {
-    count.value--
-  }
-  // doubleCount 从计算属性中添加
-  const doubleCount = computed(() => count.value * 2)
-  // watch 方法
-  watch(
-    // 监听的值
-    () => count.value, 
-    // 回调函数
-    val => {
-      console.log('From Watch conut:', val)
-    }
-  )
 
-  return {
-    count,
-    addEvt,
-    lessEvt,
-    doubleCount,
-  }
-}
 
 export default {
+  components: {
+    HelloModule
+  },
   setup(props, context) {
     console.log('props:', props)
     // 当前上下文
@@ -57,7 +31,6 @@ export default {
     const arr = []
 
     return {
-      ...countDemo(),
       arr
     }
   }

@@ -3,7 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/base">Composition API</router-link> |
-      <router-link to="/about">Vuex</router-link> 
+      <router-link to="/about">Options API</router-link> 
     </div>
     <router-view/>
   </div>

@@ -1,10 +1,9 @@
 <template>
   <div class="about">
-    <h1>Options API</h1>
-
-    <h1>Arr: {{ arr }} </h1>
-    <input type="text" v-model="textV">
-    <button @click="appendEvt">Append</button>
+    <h1>count: {{count}}</h1>
+    <p>{{count}} * 2 = {{ doubleCount }}</p>
+    <button @click="lessEvt">-</button>
+    <button @click="addEvt">+</button>
   </div>
 </template>
 
@@ -13,14 +12,30 @@ export default {
   name: 'AboutView',
   data () {
     return {
-      arr: [1,2,3],
-      textV: 0
+      // 定义一个值
+      count: 0
+    }
+  },
+  watch: {
+    count (val) {
+      console.log('From Watch conut:', val)
+    }
+  },
+  computed: {
+    // doubleCount 从计算属性中添加
+    doubleCount () {
+      return this.count * 2
     }
   },
   methods: {
-    appendEvt () {
-      this.arr[this.arr.length] = this.textV
+    // 添加方法
+    addEvt () {
+      this.count++
     },
+    // 减少方法
+    lessEvt () {
+      this.count--
+    }
   }
 }
 </script>
