@@ -1,5 +1,7 @@
 # vue-next-demo
 
+基于 Vue3.x 的项目框架。
+
 ## Project setup
 ```
 yarn install

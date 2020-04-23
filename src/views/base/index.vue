@@ -11,6 +11,37 @@
 <script>
 import { ref, watch, computed, getCurrentInstance } from "vue"
 
+function countDemo () {
+  // 定义一个值
+  const count = ref(0)
+  // 添加方法
+  const addEvt = () => {
+    count.value++
+  }
+  // 减少方法
+  const lessEvt = () => {
+    count.value--
+  }
+  // doubleCount 从计算属性中添加
+  const doubleCount = computed(() => count.value * 2)
+  // watch 方法
+  watch(
+    // 监听的值
+    () => count.value, 
+    // 回调函数
+    val => {
+      console.log('From Watch conut:', val)
+    }
+  )
+
+  return {
+    count,
+    addEvt,
+    lessEvt,
+    doubleCount,
+  }
+}
+
 export default {
   setup(props, context) {
     console.log('props:', props)
@@ -21,33 +52,13 @@ export default {
     // 获取路由
     console.log('route:', ctx.$router.currentRoute.value)
 
-    // 定义一个值
-    const count = ref(0)
-    // 添加方法
-    const addEvt = () => {
-      count.value++
-    }
-    // 减少方法
-    const lessEvt = () => {
-      count.value--
-    }
-    // doubleCount 从计算属性中添加
-    const doubleCount = computed(() => count.value * 2)
-    // watch 方法
-    watch(
-      // 监听的值
-      () => count.value, 
-      // 回调函数
-      val => {
-        console.log('From Watch conut:', val)
-      }
-    )
+    
+
+    const arr = []
 
     return {
-      count,
-      addEvt,
-      lessEvt,
-      doubleCount
+      ...countDemo(),
+      arr
     }
   }
 }

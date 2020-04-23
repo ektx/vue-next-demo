@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/base">Base</router-link> |
+      <router-link to="/base">Composition API</router-link> |
       <router-link to="/about">Vuex</router-link> 
     </div>
     <router-view/>
