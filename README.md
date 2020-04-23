@@ -3,6 +3,7 @@
 基于 Vue3.x 的项目框架。
 
 ## 功能
+
 - 自动注册路由
 - 自动注册组件
 
@@ -20,7 +21,7 @@ vue-next-demo
   │  ├─── store           store 目录
   │  ├─── views           业务页面目录
   │     ├─── home         主页目录
-  │        ├─── index.vue 主内容页面
+  │     │  ├─── index.vue 主内容页面
   │     ├─── pageA        业务A目录
   │        ├─── index.vue 业务A内容页面
   │  ├─── App.vue        
@@ -36,25 +37,23 @@ vue-next-demo
 在 views 中添加业务**页面文件夹**，系统自动生成路由页面，无需用户配制。
 
 
-## Project setup
+## 项目配制
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### 开发模式
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+### 打包生成
 ```
 yarn build
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
+### 自定义配制
+[Configuration Reference](https://cli.vuejs.org/config/)  
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 参考
+[Vue Composition API](https://composition-api.vuejs.org/)   
