@@ -2,8 +2,8 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/base">Composition API</router-link> |
-      <router-link to="/about">Options API</router-link> 
+      <router-link to="/composition">Composition API</router-link> |
+      <router-link to="/options">Options API</router-link> 
     </div>
     <router-view/>
   </div>
