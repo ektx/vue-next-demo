@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { ref, watch, computed } from 'vue'
+import { ref, watch, computed, watchEffect } from 'vue'
 
 function countDemo () {
   // 定义一个值
@@ -32,6 +32,8 @@ function countDemo () {
       console.log('From Watch conut:', val)
     }
   )
+
+  watchEffect(() => console.log(`watchEffect is runing, ${count.value}`))
 
   return {
     count,

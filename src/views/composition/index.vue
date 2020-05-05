@@ -1,14 +1,22 @@
 <template>
   <div class="test">
     
-    <h1>{{ arr }}</h1>
+    <h1>Todo List</h1>
+    <input type="text" v-model="state.value" />
+    <button @click="appendEvt">Add</button>
+    <ul>
+      <li 
+        v-for="(item, i) in state.arr"
+        :key="i"
+      >{{ i +1 }}. {{ item }}</li>
+    </ul>
 
     <HelloModule />
   </div>
 </template>
 
 <script>
-import { getCurrentInstance } from 'vue'
+import { getCurrentInstance, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 
 export default {
@@ -25,10 +33,19 @@ export default {
     const route = useRoute()
     console.log('route 2:', route.path, route)
 
-    const arr = []
+    const state = reactive({
+      value: '',
+      arr: []
+    })
+
+    const appendEvt = () => {
+      state.arr.push(state.value)
+      state.value = ''
+    }
 
     return {
-      arr
+      state,
+      appendEvt,
     }
   }
 }

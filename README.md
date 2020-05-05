@@ -1,6 +1,6 @@
 # vue-next-demo
 
-基于 Vue3.x 的项目框架。
+基于 Vue 3.x 的项目框架。
 
 ## 功能
 
