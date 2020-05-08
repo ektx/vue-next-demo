@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "^3.0.0-beta.3",
-    "vue-router": "^4.0.0-alpha.7",
+    "vue": "3.0.0-beta.10",
+    "vue-router": "4.0.0-alpha.10",
     "vuex": "^4.0.0-alpha.1"
   },
   "devDependencies": {
@@ -19,9 +19,9 @@
     "@vue/cli-plugin-router": "^4.3.1",
     "@vue/cli-plugin-vuex": "^4.3.1",
     "@vue/cli-service": "^4.3.1",
-    "@vue/compiler-sfc": "^3.0.0-beta.3",
+    "@vue/compiler-sfc": "^3.0.0-beta.10",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.0.0-alpha.3",
+    "eslint": "7.0.0-rc.0",
     "eslint-plugin-vue": "^7.0.0-alpha.1",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",

@@ -8,7 +8,8 @@ export default function ({ component }) {
     true,
     // 匹配基础组件文件名的正则
     // 我们只对以 index.vue 和 index.js 结束的文件自动注册
-    /index\.(vue|js)$/
+    /index\.(vue|js)$/,
+    "lazy"
   );
 
   const requireModule = require.context(
@@ -18,7 +19,8 @@ export default function ({ component }) {
     true,
     // 匹配基础组件文件名的正则
     // 我们只对以 index.vue 和 index.js 结束的文件自动注册
-    /index\.(vue|js)$/
+    /index\.(vue|js)$/,
+    "lazy"
   );
 
   requireComponent.keys().forEach(name => {

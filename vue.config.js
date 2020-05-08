@@ -1,4 +1,5 @@
 // https://cli.vuejs.org/zh/config/
+const HelloWorldPlugin = require('./bin/test')
 
 module.exports = {
   devServer: {
@@ -6,4 +7,7 @@ module.exports = {
 
   },
   productionSourceMap: false,
+  configureWebpack: {
+    plugins: [new HelloWorldPlugin({options: true})]
+  }
 }
