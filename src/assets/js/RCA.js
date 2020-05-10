@@ -1,6 +1,9 @@
-// RCA (Register components automatically 自动注册组件)
-export default function ({ component }) {
-
+/**
+ * RCA (Register components automatically 自动注册组件)
+ * @param {Vue.component} component  
+ * @param {function} defineAsyncComponent
+ */
+export default function ({ component }, defineAsyncComponent) {
   const requireComponent = require.context(
     // 其组件目录的相对路径
     "@/components",
@@ -30,32 +33,18 @@ export default function ({ component }) {
     registered(name, requireModule);
   });
 
-  function registered(fileName, requireCtx) {
+  async function registered(fileName, requireCtx) {
     // 获取组件的配置
-    const componentConfig = requireCtx(fileName);
-    let componentName = "";
-
-    // 全局注册组件
-    let setComponent = function(name, config) {
-      component(
-        name,
-        // 如果这个组件选项是通过 `export default` 导出的，
-        // 那么就会优先使用 `.default`，
-        // 否则回退到使用模块的根。
-        config.default || config
-      );
-    };
-
-    // 对于是 index.js 的组件，我们要为其内部子组件独立注册
-    if (fileName.endsWith(".js")) {
-      Object.keys(componentConfig).forEach(module => {
-        setComponent(module, componentConfig[module]);
-      });
-    } else {
-      // 获取组件名称
-      componentName = fileName.slice(2, -10);
-
-      setComponent(componentName, componentConfig);
-    }
+    const componentConfig = await requireCtx(fileName);
+    
+    // 获取组件名称
+    let componentName = fileName.slice(2, -10);
+    let { __file } = componentConfig.default
+    
+    // 全局注册异步组件
+    // https://github.com/vuejs/rfcs/blob/async-component/active-rfcs/0026-async-component-api.md
+    component(componentName, defineAsyncComponent({
+      loader: () => import(`../../${__file.slice(4)}`),
+    }))
   }
 }

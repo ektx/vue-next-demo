@@ -8,6 +8,6 @@ module.exports = {
   },
   productionSourceMap: false,
   configureWebpack: {
-    plugins: [new HelloWorldPlugin({options: true})]
+    // plugins: [new HelloWorldPlugin({options: true})]
   }
 }
