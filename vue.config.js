@@ -1,5 +1,5 @@
 // https://cli.vuejs.org/zh/config/
-const HelloWorldPlugin = require('./bin/test')
+// const HelloWorldPlugin = require('./bin/test')
 
 module.exports = {
   devServer: {

@@ -44,7 +44,8 @@ export default function ({ component }, defineAsyncComponent) {
     // 全局注册异步组件
     // https://github.com/vuejs/rfcs/blob/async-component/active-rfcs/0026-async-component-api.md
     component(componentName, defineAsyncComponent({
-      loader: () => import(`../../${__file.slice(4)}`),
+      // https://webpack.docschina.org/api/module-methods/#import
+      loader: () => import(/* webpackChunkName: "[request]" */`../../${__file.slice(4)}`),
     }))
   }
 }
