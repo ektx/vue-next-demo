@@ -26,26 +26,28 @@ export default function ({ component }, defineAsyncComponent) {
     "lazy"
   );
 
-  requireComponent.keys().forEach(name => {
-    registered(name, requireComponent);
+  requireComponent.keys().forEach(path => {
+    registered(path, 'components');
   });
-  requireModule.keys().forEach(name => {
-    registered(name, requireModule);
+  requireModule.keys().forEach(path => {
+    registered(path, 'modules');
   });
 
-  async function registered(fileName, requireCtx) {
-    // 获取组件的配置
-    const componentConfig = await requireCtx(fileName);
-    
+  /**
+   * 注册组件
+   * @param {string} file 文件相对地址
+   * @param {string} directory 查寻目录
+   */
+  function registered(file, directory) {
     // 获取组件名称
-    let componentName = fileName.slice(2, -10);
-    let { __file } = componentConfig.default
+    let componentName = file.slice(2, -10);
+    let filePath = directory + file.slice(1)
     
     // 全局注册异步组件
     // https://github.com/vuejs/rfcs/blob/async-component/active-rfcs/0026-async-component-api.md
     component(componentName, defineAsyncComponent({
       // https://webpack.docschina.org/api/module-methods/#import
-      loader: () => import(/* webpackChunkName: "[request]" */`../../${__file.slice(4)}`),
+      loader: () => import(/* webpackChunkName: "[request]" */ `../../${filePath}`),
     }))
   }
 }
