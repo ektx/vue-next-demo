@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-// import Home from '../views/Home.vue'
 
 // 路由集合
 let routes = {};
