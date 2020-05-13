@@ -4,6 +4,8 @@
     <p>{{count}} * 2 = {{ doubleCount }}</p>
     <button @click="lessEvt">-</button>
     <button @click="addEvt">+</button>
+    
+    <HelloModule ref="mod"/>
   </div>
 </template>
 
@@ -26,6 +28,9 @@ export default {
     doubleCount () {
       return this.count * 2
     }
+  },
+  mounted() {
+    console.log(this.$refs.mod)
   },
   methods: {
     // 添加方法

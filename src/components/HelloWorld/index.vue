@@ -33,10 +33,39 @@
 </template>
 
 <script>
+import { onMounted, onUnmounted } from 'vue'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  // mounted() {
+  //   this.test()
+  // },
+  // methods: {
+  //   test () {
+  //     setInterval(() => {
+  //       this.$emit('time', Date.now())
+  //     }, 1000)
+  //   }
+  // }
+  setup(props, content) {
+    let timer = null
+    let timeEvt = () => {
+      timer = setInterval(() => {
+        content.emit('time', Date.now())
+      }, 1000)
+    }
+
+    onMounted(() => {
+      timeEvt()
+    }) 
+    
+    onUnmounted(() => {
+      if (timer) clearInterval(timer)
+    })
+
+    return {}
   }
 }
 </script>

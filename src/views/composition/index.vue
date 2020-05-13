@@ -1,29 +1,37 @@
 <template>
-  <div class="test">
+  <div ref="root" class="test">
     
-    <Todo ref="todo" />
+    <Todo ref="todos" />
 
     <HelloModule />
+
+    <Child ref="child"/>
   </div>
 </template>
 
 <script>
 import { ref, getCurrentInstance, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import Child from './child'
 
 export default {
+  components: { Child },
   setup(props, context) {
     console.log('props:', props)
-    let todo = ref(null)
+    let todos = ref(null)
+    let root = ref(null)
+    let child = ref(null)
     let num = ref(0)
     // 当前上下文
-    const { ctx, refs } = getCurrentInstance()
+    const { ctx } = getCurrentInstance()
     console.log('getCurrentInstance:', getCurrentInstance())
-    console.log('ctx this:', ctx, refs.todo, todo)
+    console.log('ctx this:', ctx)
     console.log('context:', context)
+    console.log('child:', child)
 
     onMounted(() => {
-      console.log(1, todo.value.appendEvt, num)
+      root.value.style.border = '2px solid'
+      console.log(1, todos.value, num, root)
     })
 
     // 获取路由方法一
@@ -33,7 +41,7 @@ export default {
     console.log('route 2:', route.path, route)
 
     return { 
-      todo
+      root
     }
   }
 }
