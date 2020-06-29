@@ -6,24 +6,24 @@
 export default function ({ component }, defineAsyncComponent) {
   const requireComponent = require.context(
     // 其组件目录的相对路径
-    "@/components",
+    '@/components',
     // 是否查询其子目录
     true,
     // 匹配基础组件文件名的正则
     // 我们只对以 index.vue 和 index.js 结束的文件自动注册
     /index\.(vue|js)$/,
-    "lazy"
+    'lazy'
   );
 
   const requireModule = require.context(
     // 其组件目录的相对路径
-    "@/modules",
+    '@/modules',
     // 是否查询其子目录
     true,
     // 匹配基础组件文件名的正则
     // 我们只对以 index.vue 和 index.js 结束的文件自动注册
     /index\.(vue|js)$/,
-    "lazy"
+    'lazy'
   );
 
   requireComponent.keys().forEach(path => {

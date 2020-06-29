@@ -27,35 +27,35 @@ async function registered(r) {
   // 过滤已经存在的1级目录
   if (r in helpObj) return;
   // 获取文件地址
-  let path = r.endsWith("default.vue") ? r.slice(1) : r.slice(1, -10);
+  let path = r.endsWith('default.vue') ? r.slice(1) : r.slice(1, -10);
 
-  if (r.endsWith("route.js")) {
+  if (r.endsWith('route.js')) {
     let { default: main } = await requireRouter(r);
     // 动态添加路由
     myRouter.addRoutes([main]);
   } else {
-    let pathArr = path.split("/");
+    let pathArr = path.split('/');
     let arrLength = pathArr.length;
 
     if (arrLength > 2) {
       // 处理父级内容
       let parentPath = pathArr.slice(0, -1);
-      parentPath = `.${parentPath.join("/")}/index.vue`;
+      parentPath = `.${parentPath.join('/')}/index.vue`;
 
       // 路由内容
       let route = {
         component: () => requireRouter(r)
       };
 
-      if (r.endsWith("default.vue")) {
-        route.name = "";
-        route.path = "/";
+      if (r.endsWith('default.vue')) {
+        route.name = '';
+        route.path = '/';
       } else {
         /**
          * 名称规则：父级目录-子级目录
          * 例子：/user/aboutMe -> user-aboutMe
          */
-        route.name = pathArr.filter(Boolean).join("-");
+        route.name = pathArr.filter(Boolean).join('-');
         route.path = pathArr[arrLength - 1]
       }
 
@@ -90,8 +90,8 @@ async function registered(r) {
       };
       
       // 处理 / 目录，此项目将 Home 为根目录
-      if (path === "/home") {
-        data.alias = "/";
+      if (path === '/home') {
+        data.alias = '/';
       }
 
       routes[path] = data;
@@ -104,14 +104,14 @@ async function registered(r) {
 // 自动处理懒加载
 auto(require.context( // eslint-disable-line
   // 查询路由的目录
-  "@/views",
+  '@/views',
   // 是否查询子目录
   true,
   // 路由匹配规则
   // 对于是以 index.vue 或是 route.js 结尾的文件
   /(index\.vue$)|(default\.vue$)|(route\.js$)/,
   // 启动懒加载
-  "lazy"
+  'lazy'
 ));
 
 /**
